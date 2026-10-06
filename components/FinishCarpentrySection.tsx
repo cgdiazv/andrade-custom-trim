@@ -1,8 +1,12 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function FinishCarpentrySection() {
-  const items = ["Siding", "Stairs"];
+  const { t } = useLanguage();
+  const data = t.servicesPage.finishCarpentry;
 
   return (
     <section className="w-full bg-white py-16 sm:py-20 lg:py-24 border-t border-gray-100/80">
@@ -11,19 +15,16 @@ export default function FinishCarpentrySection() {
           {/* Left Column: Content (Desktop Left, Mobile Below Image) */}
           <div className="flex flex-col items-start text-left order-2 lg:order-1">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#FC6D15] tracking-wide uppercase mb-4 sm:mb-5">
-              FINISH CARPENTRY
+              {data.title}
             </h2>
 
             <p className="text-gray-600 text-sm sm:text-[15px] lg:text-base leading-relaxed mb-6 sm:mb-8">
-              From repairs to custom woodwork, we handle a variety of general
-              carpentry projects. Whether you&apos;re updating your home, fixing
-              worn-out woodwork, or bringing a new idea to life, we&apos;re here to
-              make it happen with quality workmanship and attention to detail.
+              {data.description}
             </p>
 
             {/* Bullet List */}
             <ul className="space-y-3 w-full">
-              {items.map((item) => (
+              {data.items.map((item) => (
                 <li
                   key={item}
                   className="flex items-start gap-2.5 text-gray-700 text-sm sm:text-[15px] leading-snug"

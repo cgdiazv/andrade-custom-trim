@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight, Eye, Layers } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export interface ProjectItem {
   id: string;
@@ -182,8 +183,17 @@ const categories = [
 type Category = (typeof categories)[number];
 
 export default function ProjectsGallery() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<Category>("All");
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
+
+  const categoryLabels: Record<Category, string> = {
+    All: t.projectsPage.categories.all,
+    "Custom Closets": t.projectsPage.categories.closets,
+    "Custom Cabinets": t.projectsPage.categories.cabinets,
+    "Trim & Molding": t.projectsPage.categories.trim,
+    "Ceilings & Beams": t.projectsPage.categories.ceilings,
+  };
 
   const filteredProjects =
     activeCategory === "All"
@@ -249,7 +259,7 @@ export default function ProjectsGallery() {
                   : "bg-white text-gray-700 border border-gray-200 hover:border-[#FC6D15] hover:text-[#FC6D15]"
               }`}
             >
-              {cat} <span className="opacity-75 font-normal ml-1">({count})</span>
+              {categoryLabels[cat]} <span className="opacity-75 font-normal ml-1">({count})</span>
             </button>
           );
         })}
@@ -276,7 +286,7 @@ export default function ProjectsGallery() {
               {/* Hover Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
                 <span className="inline-block self-start px-2.5 py-1 mb-2 bg-[#FC6D15] text-white text-[11px] font-bold uppercase tracking-wider rounded-xs">
-                  {project.category}
+                  {categoryLabels[project.category]}
                 </span>
                 <h3 className="text-base sm:text-lg font-bold text-white drop-shadow-sm leading-snug">
                   {project.title}
@@ -371,7 +381,7 @@ export default function ProjectsGallery() {
             {/* Modal Caption */}
             <div className="mt-4 text-center text-white px-4">
               <span className="inline-block text-[#FC6D15] font-bold text-xs uppercase tracking-widest mb-1">
-                {filteredProjects[selectedProjectIndex].category}
+                {categoryLabels[filteredProjects[selectedProjectIndex].category]}
               </span>
               <h2 className="text-base sm:text-xl font-bold">
                 {filteredProjects[selectedProjectIndex].title}

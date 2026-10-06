@@ -11,6 +11,7 @@ const poppins = Poppins({
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Andrade Trim and Cabinet | Dallas & Fort Worth Custom Carpentry",
@@ -85,9 +86,11 @@ export default function RootLayout({
         className="min-h-full flex flex-col bg-white text-gray-900 font-sans"
         suppressHydrationWarning
       >
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

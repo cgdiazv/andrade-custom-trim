@@ -1,14 +1,13 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Check } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function WhoWeAre() {
-  const features = [
-    "Craftsmanship & Precision",
-    "Personalized Service",
-    "Integrity & Reliability",
-  ];
+  const { t } = useLanguage();
 
   return (
     <section className="w-full bg-white py-16 sm:py-24 lg:py-28 overflow-hidden">
@@ -32,31 +31,27 @@ export default function WhoWeAre() {
           <div className="flex flex-col items-start text-left">
             {/* Tagline */}
             <span className="text-[#FC6D15] font-bold text-sm sm:text-base tracking-wider uppercase mb-3">
-              WHO WE ARE
+              {t.whoWeAre.tagline}
             </span>
 
             {/* Main Headline */}
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-[1.15] mb-6">
-              Where <span className="text-[#FC6D15]">craftsmanship</span>
+              {t.whoWeAre.titlePre}
+              <span className="text-[#FC6D15]">{t.whoWeAre.craftsmanship}</span>
               <br />
-              meets <span className="text-[#FC6D15]">passion</span>.
+              {t.whoWeAre.titleMid}
+              <span className="text-[#FC6D15]">{t.whoWeAre.passion}</span>
+              {t.whoWeAre.titlePost}
             </h2>
 
             {/* Description */}
             <p className="text-gray-600 text-base sm:text-[17px] leading-relaxed mb-8">
-              Welcome to{" "}
-              <strong className="font-bold text-gray-900">
-                Andrade Custom Trim
-              </strong>
-              , where craftsmanship meets passion. We are Victor and Michelle
-              Andrade, a husband-and-wife team dedicated to creating high-quality,
-              custom carpentry that transforms your spaces and brings your
-              visions to life.
+              {t.whoWeAre.description}
             </p>
 
             {/* Feature Bullet Points */}
             <ul className="space-y-4 mb-10 w-full">
-              {features.map((item) => (
+              {t.whoWeAre.features.map((item) => (
                 <li key={item} className="flex items-center space-x-3.5">
                   <div className="flex-shrink-0 text-[#FC6D15]">
                     <Check className="w-5 h-5 stroke-[3]" />
@@ -73,7 +68,7 @@ export default function WhoWeAre() {
               href="/about"
               className="inline-flex items-center justify-center px-8 py-3.5 border-2 border-[#FC6D15] text-[#FC6D15] font-bold text-sm tracking-wider uppercase rounded-xs hover:bg-[#FC6D15] hover:text-white transition-all duration-200 shadow-xs"
             >
-              KNOW MORE
+              {t.whoWeAre.knowMore}
             </Link>
           </div>
         </div>

@@ -1,14 +1,10 @@
+"use client";
+
 import React from "react";
-import type { Metadata } from "next";
 import { Phone, Mail, MapPin, Clock, ShieldCheck, Check, Sparkles } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import ContactForm from "@/components/ContactForm";
-
-export const metadata: Metadata = {
-  title: "Contact Us | Andrade Custom Trim",
-  description:
-    "Get in touch with Victor and Michelle Andrade for a free estimate on your custom trim, cabinetry, and finish carpentry project in Dallas & Fort Worth.",
-};
+import { useLanguage } from "@/context/LanguageContext";
 
 const serviceCities = [
   "Melissa",
@@ -33,10 +29,13 @@ const serviceCities = [
 ];
 
 export default function ContactPage() {
+  const { t } = useLanguage();
+  const c = t.contactPage;
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header Banner using header01.webp (same image as other inner pages) */}
-      <PageHeader title="Contact Us" image="/images/header01.webp" />
+      <PageHeader title={c.pageTitle} image="/images/header01.webp" />
 
       {/* Quick Contact Cards */}
       <section className="w-full bg-[#f8f9fa] py-12 sm:py-16 border-b border-gray-100">
@@ -51,12 +50,12 @@ export default function ContactPage() {
                 <Phone className="w-5 h-5 stroke-[2.2]" />
               </div>
               <span className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
-                PHONE NUMBER
+                {c.quickCards.phoneTitle}
               </span>
               <h3 className="text-lg font-extrabold text-gray-900 group-hover:text-[#FC6D15] transition-colors">
                 (469) 358-1011
               </h3>
-              <p className="text-xs text-gray-500 mt-1">Direct call or text</p>
+              <p className="text-xs text-gray-500 mt-1">{c.quickCards.phoneSub}</p>
             </a>
 
             {/* Email Card */}
@@ -68,12 +67,12 @@ export default function ContactPage() {
                 <Mail className="w-5 h-5 stroke-[2.2]" />
               </div>
               <span className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
-                EMAIL ADDRESS
+                {c.quickCards.emailTitle}
               </span>
               <h3 className="text-sm sm:text-base font-extrabold text-gray-900 group-hover:text-[#FC6D15] transition-colors break-all">
                 info@andradecustomtrim.com
               </h3>
-              <p className="text-xs text-gray-500 mt-1">Fast 24-hr reply</p>
+              <p className="text-xs text-gray-500 mt-1">{c.quickCards.emailSub}</p>
             </a>
 
             {/* Business Address Card */}
@@ -87,15 +86,15 @@ export default function ContactPage() {
                 <MapPin className="w-5 h-5 stroke-[2.2]" />
               </div>
               <span className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
-                OUR LOCATION
+                {c.quickCards.locationTitle}
               </span>
               <h3 className="text-base font-extrabold text-gray-900 group-hover:text-[#FC6D15] transition-colors leading-tight">
-                1329 County Road 278
+                {c.quickCards.addressLine1}
                 <span className="block text-xs font-semibold text-gray-500 mt-0.5">
-                  Building 475A
+                  {c.quickCards.building}
                 </span>
               </h3>
-              <p className="text-xs text-gray-500 mt-1">Melissa, TX 75454</p>
+              <p className="text-xs text-gray-500 mt-1">{c.quickCards.cityStateZip}</p>
             </a>
 
             {/* Hours Card */}
@@ -104,12 +103,12 @@ export default function ContactPage() {
                 <Clock className="w-5 h-5 stroke-[2.2]" />
               </div>
               <span className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
-                HOURS OF OPERATION
+                {c.quickCards.hoursTitle}
               </span>
               <h3 className="text-base sm:text-lg font-extrabold text-gray-900">
-                Mon - Sat: 9AM - 7PM
+                {c.quickCards.hoursVal}
               </h3>
-              <p className="text-xs text-gray-500 mt-1">Sunday by appointment</p>
+              <p className="text-xs text-gray-500 mt-1">{c.quickCards.hoursSub}</p>
             </div>
           </div>
         </div>
@@ -129,13 +128,13 @@ export default function ContactPage() {
               {/* Direct Call Box */}
               <div className="bg-[#141414] text-white p-7 sm:p-9 rounded-xs shadow-md space-y-4">
                 <span className="text-[#FC6D15] font-bold text-xs uppercase tracking-widest block">
-                  READY TO TALK?
+                  {c.directCall.tagline}
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                  Speak Directly With the Owners
+                  {c.directCall.title}
                 </h3>
                 <p className="text-gray-300 text-sm leading-relaxed">
-                  We treat every project as if it were our own home. Call us directly to discuss your project scope, timing, or schedule an in-home visit.
+                  {c.directCall.description}
                 </p>
                 <div className="pt-2">
                   <a
@@ -143,7 +142,7 @@ export default function ContactPage() {
                     className="inline-flex items-center gap-3 px-6 py-3.5 bg-[#FC6D15] text-white font-bold text-sm uppercase tracking-wider rounded-xs hover:bg-[#e55e0c] transition-colors shadow-lg shadow-[#FC6D15]/25"
                   >
                     <Phone className="w-4 h-4" />
-                    <span>Call (469) 358-1011</span>
+                    <span>{c.directCall.btn}</span>
                   </a>
                 </div>
               </div>
@@ -152,51 +151,30 @@ export default function ContactPage() {
               <div className="bg-[#f9fafb] p-7 sm:p-8 rounded-xs border border-gray-100 space-y-6">
                 <div>
                   <h4 className="text-base sm:text-lg font-bold text-gray-900 uppercase tracking-wide mb-1">
-                    What You Can Expect
+                    {c.expectations.title}
                   </h4>
                   <div className="w-10 h-0.5 bg-[#FC6D15]" />
                 </div>
 
                 <ul className="space-y-4 text-sm text-gray-700">
-                  <li className="flex items-start gap-3">
-                    <div className="text-[#FC6D15] flex-shrink-0 mt-0.5">
-                      <Check className="w-4 h-4 stroke-[3]" />
-                    </div>
-                    <span>
-                      <strong className="text-gray-900">Complimentary In-Home Consultation:</strong> We take exact measurements and listen to your vision.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="text-[#FC6D15] flex-shrink-0 mt-0.5">
-                      <Check className="w-4 h-4 stroke-[3]" />
-                    </div>
-                    <span>
-                      <strong className="text-gray-900">Transparent Estimates:</strong> Honest pricing with no hidden surprises or fees.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="text-[#FC6D15] flex-shrink-0 mt-0.5">
-                      <Check className="w-4 h-4 stroke-[3]" />
-                    </div>
-                    <span>
-                      <strong className="text-gray-900">Master Finish Carpentry:</strong> Precision cuts, clean seams, and exceptional material quality.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="text-[#FC6D15] flex-shrink-0 mt-0.5">
-                      <Check className="w-4 h-4 stroke-[3]" />
-                    </div>
-                    <span>
-                      <strong className="text-gray-900">Punctual & Clean:</strong> We respect your home, keeping job sites tidy from start to finish.
-                    </span>
-                  </li>
+                  {c.expectations.items.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <div className="text-[#FC6D15] flex-shrink-0 mt-0.5">
+                        <Check className="w-4 h-4 stroke-[3]" />
+                      </div>
+                      <span>
+                        <strong className="text-gray-900">{item.bold}</strong>
+                        {item.text}
+                      </span>
+                    </li>
+                  ))}
                 </ul>
 
                 {/* BBB Accreditation Badge */}
                 <div className="pt-4 border-t border-gray-200/70 flex items-center justify-between">
                   <div className="flex items-center gap-2 text-xs font-semibold text-gray-600">
                     <ShieldCheck className="w-5 h-5 text-blue-600" />
-                    <span>BBB Accredited Business</span>
+                    <span>{c.expectations.bbbAccredited}</span>
                   </div>
                   <a
                     href="https://www.bbb.org/us/tx/allen/profile/finish-carpentry/andrade-custom-trim-0875-91345914/#sealclick"
@@ -225,13 +203,13 @@ export default function ContactPage() {
             <div className="p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-200/80 bg-white">
               <div>
                 <span className="text-xs font-bold text-[#FC6D15] uppercase tracking-wider block mb-1">
-                  OUR WORKSHOP & OFFICE
+                  {c.mapSection.tagline}
                 </span>
                 <h3 className="text-xl sm:text-2xl font-extrabold text-gray-900 tracking-tight">
-                  1329 County Road 278, Building 475A, Melissa, TX 75454
+                  {c.mapSection.address}
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-500 mt-1">
-                  Conveniently located in Melissa, serving Dallas, Fort Worth & the entire DFW Metroplex.
+                  {c.mapSection.subtext}
                 </p>
               </div>
               <a
@@ -241,7 +219,7 @@ export default function ContactPage() {
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FC6D15] hover:bg-[#e55e0c] text-white text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xs transition-colors shrink-0 shadow-xs"
               >
                 <MapPin className="w-4 h-4" />
-                <span>Get Directions</span>
+                <span>{c.mapSection.getDirections}</span>
               </a>
             </div>
             <div className="w-full h-80 sm:h-96 relative">
@@ -266,13 +244,13 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto mb-10 space-y-3">
             <span className="text-[#FC6D15] font-bold text-xs sm:text-sm tracking-widest uppercase">
-              LOCAL TEXAS CARPENTRY
+              {c.serviceAreasSection.tagline}
             </span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
-              Proudly Serving Dallas, Fort Worth & Surrounding Cities
+              {c.serviceAreasSection.title}
             </h3>
             <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-              Based in North Texas, our family-owned business brings premier custom trim, cabinetry, and closet installations to homeowners throughout DFW:
+              {c.serviceAreasSection.description}
             </p>
           </div>
 

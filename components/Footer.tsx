@@ -1,8 +1,13 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="relative text-white overflow-hidden">
       {/* Background Image with Dark Overlay */}
@@ -22,7 +27,7 @@ export default function Footer() {
             {/* Column 1: Andrade Custom Trim & BBB Badge */}
             <div className="flex flex-col items-start">
               <h3 className="text-white font-extrabold text-sm sm:text-base tracking-wider uppercase">
-                ANDRADE CUSTOM TRIM
+                {t.footer.brandDesc}
               </h3>
               <div className="w-12 h-[3px] bg-[#FC6D15] mt-2 mb-6" />
 
@@ -46,7 +51,7 @@ export default function Footer() {
             {/* Column 2: Quick Links */}
             <div className="flex flex-col items-start">
               <h3 className="text-white font-extrabold text-sm sm:text-base tracking-wider uppercase">
-                QUICK LINKS
+                {t.footer.quickLinks}
               </h3>
               <div className="w-12 h-[3px] bg-[#FC6D15] mt-2 mb-6" />
 
@@ -56,7 +61,7 @@ export default function Footer() {
                     href="/about"
                     className="text-white/90 hover:text-[#FC6D15] transition-colors font-medium"
                   >
-                    About Us
+                    {t.footer.aboutUs}
                   </Link>
                 </li>
                 <li>
@@ -64,7 +69,7 @@ export default function Footer() {
                     href="/services"
                     className="text-white/90 hover:text-[#FC6D15] transition-colors font-medium"
                   >
-                    Services
+                    {t.footer.services}
                   </Link>
                 </li>
                 <li>
@@ -72,7 +77,7 @@ export default function Footer() {
                     href="/projects"
                     className="text-white/90 hover:text-[#FC6D15] transition-colors font-medium"
                   >
-                    Projects
+                    {t.footer.projects}
                   </Link>
                 </li>
                 <li>
@@ -80,7 +85,7 @@ export default function Footer() {
                     href="/contact"
                     className="text-white/90 hover:text-[#FC6D15] transition-colors font-medium"
                   >
-                    Contact
+                    {t.footer.contact}
                   </Link>
                 </li>
               </ul>
@@ -89,7 +94,7 @@ export default function Footer() {
             {/* Column 3: Contact Us */}
             <div className="flex flex-col items-start">
               <h3 className="text-white font-extrabold text-sm sm:text-base tracking-wider uppercase">
-                CONTACT US
+                {t.footer.contactUs}
               </h3>
               <div className="w-12 h-[3px] bg-[#FC6D15] mt-2 mb-6" />
 
@@ -99,7 +104,7 @@ export default function Footer() {
                     href="tel:4693581011"
                     className="hover:text-[#FC6D15] transition-colors"
                   >
-                    (469) 358-1011
+                    {t.footer.phone}
                   </a>
                 </li>
                 <li>
@@ -107,7 +112,7 @@ export default function Footer() {
                     href="mailto:info@andradecustomtrim.com"
                     className="hover:text-[#FC6D15] transition-colors break-all"
                   >
-                    info@andradecustomtrim.com
+                    {t.footer.email}
                   </a>
                 </li>
                 <li>
@@ -119,20 +124,20 @@ export default function Footer() {
                   >
                     1329 County Road 278
                     <br />
-                    Building 475A
+                    {t.footer.addressBldg}
                     <br />
-                    Melissa, TX 75454
+                    {t.footer.addressCity}
                   </a>
                 </li>
-                <li>Dallas | Fort Worth Area</li>
-                <li>Mon - Sat | 9AM - 7PM</li>
+                <li>{t.footer.serviceArea}</li>
+                <li>{t.footer.hours}</li>
               </ul>
             </div>
 
             {/* Column 4: Recent Posts */}
             <div className="flex flex-col items-start">
               <h3 className="text-white font-extrabold text-sm sm:text-base tracking-wider uppercase">
-                RECENT POSTS
+                {t.footer.recentPosts}
               </h3>
               <div className="w-12 h-[3px] bg-[#FC6D15] mt-2 mb-6" />
 
@@ -140,7 +145,7 @@ export default function Footer() {
                 href="/projects"
                 className="text-white/90 hover:text-[#FC6D15] text-sm font-medium leading-relaxed transition-colors"
               >
-                Transforming Homes with Custom Woodworking Excellence
+                {t.footer.recentPostTitle}
               </Link>
             </div>
           </div>
@@ -150,7 +155,7 @@ export default function Footer() {
       {/* Sub-Footer Copyright & Credits Bar */}
       <div className="bg-[#0b0b0b] border-t border-white/10 py-5 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm text-zinc-400">
-          <p>© 2026 Andrade Custom Trim. All rights reserved.</p>
+          <p>{t.footer.copyright}</p>
           <p>
             <a
               href="https://indevasa.com"
@@ -158,7 +163,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-zinc-400 hover:text-white transition-colors"
             >
-              Indeva Websites
+              {t.footer.webCredits}
             </a>
           </p>
         </div>

@@ -1,25 +1,12 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function TrimWorkSection() {
-  const leftColumnItems = [
-    "Baseboards",
-    "Crown Molding",
-    "Interior and Exterior Doors",
-    "General Shelving for closets and Pantry",
-    "Hardware Installation",
-    "Windowsills",
-    "Wainscoting",
-  ];
-
-  const rightColumnItems = [
-    "Fireplace Mantel",
-    "Ship Lap",
-    "Accent Walls",
-    "Slat Walls",
-    "Beams",
-    "Tongue and Groove",
-  ];
+  const { t } = useLanguage();
+  const data = t.servicesPage.trimWork;
 
   return (
     <section className="w-full bg-white py-16 sm:py-20 lg:py-24">
@@ -40,20 +27,17 @@ export default function TrimWorkSection() {
           {/* Right Column: Content */}
           <div className="flex flex-col items-start text-left">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#FC6D15] tracking-wide uppercase mb-4 sm:mb-5">
-              TRIM WORK
+              {data.title}
             </h2>
 
             <p className="text-gray-600 text-sm sm:text-[15px] lg:text-base leading-relaxed mb-6 sm:mb-8">
-              The little details make a big difference! From elegant crown
-              molding to baseboards and wainscoting, we add character and charm to
-              any room. Our expert trim work brings a polished, finished look to
-              your home, elevating your space with precision and craftsmanship.
+              {data.description}
             </p>
 
             {/* 2-Column Bullet List */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 sm:gap-x-10 gap-y-3 sm:gap-y-3.5 w-full">
               <ul className="space-y-3">
-                {leftColumnItems.map((item) => (
+                {data.leftItems.map((item) => (
                   <li
                     key={item}
                     className="flex items-start gap-2.5 text-gray-700 text-sm sm:text-[15px] leading-snug"
@@ -67,7 +51,7 @@ export default function TrimWorkSection() {
               </ul>
 
               <ul className="space-y-3">
-                {rightColumnItems.map((item) => (
+                {data.rightItems.map((item) => (
                   <li
                     key={item}
                     className="flex items-start gap-2.5 text-gray-700 text-sm sm:text-[15px] leading-snug"

@@ -3,34 +3,34 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { ArrowRight, Phone, Mail, MapPin, Clock, Globe } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface MenuItem {
   name: string;
   href: string;
 }
 
-const defaultNavLinks: MenuItem[] = [
-  { name: "ABOUT US", href: "/about" },
-  { name: "SERVICES", href: "/services" },
-  { name: "PROJECTS", href: "/projects" },
-  { name: "CONTACT", href: "/contact" },
-];
-
 interface MenuProps {
-  navLinks?: MenuItem[];
   onQuoteClick?: () => void;
   isMobileOpen?: boolean;
   onCloseMobile?: () => void;
 }
 
 export default function Menu({
-  navLinks = defaultNavLinks,
   onQuoteClick,
   isMobileOpen = false,
   onCloseMobile,
 }: MenuProps) {
   const pathname = usePathname();
+  const { language, setLanguage, t } = useLanguage();
+
+  const navLinks: MenuItem[] = [
+    { name: t.nav.about, href: "/about" },
+    { name: t.nav.services, href: "/services" },
+    { name: t.nav.projects, href: "/projects" },
+    { name: t.nav.contact, href: "/contact" },
+  ];
 
   return (
     <nav
@@ -45,7 +45,7 @@ export default function Menu({
               const isActive = pathname === item.href;
               return (
                 <Link
-                  key={item.name}
+                  key={item.href}
                   href={item.href}
                   className={`text-[15px] font-bold tracking-wider uppercase transition-all duration-200 relative py-1.5 ${
                     isActive
@@ -67,14 +67,14 @@ export default function Menu({
                 onClick={onQuoteClick}
                 className="inline-flex items-center justify-center px-6 py-2 border-2 border-white text-white font-bold text-sm tracking-wider uppercase rounded-xs hover:bg-white hover:text-[#FC6D15] transition-all duration-200 shadow-sm active:scale-95"
               >
-                GET QUOTE
+                {t.nav.getQuote}
               </button>
             ) : (
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center px-6 py-2 border-2 border-white text-white font-bold text-sm tracking-wider uppercase rounded-xs hover:bg-white hover:text-[#FC6D15] transition-all duration-200 shadow-sm active:scale-95"
               >
-                GET QUOTE
+                {t.nav.getQuote}
               </Link>
             )}
           </div>
@@ -88,7 +88,7 @@ export default function Menu({
               href="/contact"
               className="inline-flex items-center justify-center px-3.5 py-1.5 border border-white text-white text-xs font-bold uppercase rounded hover:bg-white hover:text-[#FC6D15] transition-colors"
             >
-              GET QUOTE
+              {t.nav.getQuote}
             </Link>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function Menu({
               const isActive = pathname === item.href;
               return (
                 <Link
-                  key={item.name}
+                  key={item.href}
                   href={item.href}
                   onClick={onCloseMobile}
                   className={`flex items-center justify-between px-3 py-2.5 rounded-md text-base font-bold tracking-wider uppercase transition-colors ${
@@ -118,13 +118,44 @@ export default function Menu({
             })}
           </div>
 
+          {/* Mobile Language Selector (suauto-honduras style) */}
+          <div className="flex items-center justify-between border-t border-white/20 py-3 my-2 px-1">
+            <span className="text-xs font-bold text-white/90 uppercase flex items-center gap-1.5">
+              <Globe className="w-3.5 h-3.5" /> {language === "es" ? "Idioma" : "Language"}
+            </span>
+            <div className="flex bg-black/25 border border-white/20 rounded-lg p-0.5 text-xs font-bold">
+              <button
+                type="button"
+                onClick={() => setLanguage("es")}
+                className={`px-3 py-1 rounded-md transition cursor-pointer ${
+                  language === "es"
+                    ? "bg-white text-[#FC6D15] font-black shadow-xs"
+                    : "text-white/80 hover:text-white"
+                }`}
+              >
+                ES
+              </button>
+              <button
+                type="button"
+                onClick={() => setLanguage("en")}
+                className={`px-3 py-1 rounded-md transition cursor-pointer ${
+                  language === "en"
+                    ? "bg-white text-[#FC6D15] font-black shadow-xs"
+                    : "text-white/80 hover:text-white"
+                }`}
+              >
+                EN
+              </button>
+            </div>
+          </div>
+
           <div className="pt-2 border-t border-white/20">
             <Link
               href="/contact"
               onClick={onCloseMobile}
               className="w-full flex items-center justify-center py-3 bg-white text-[#FC6D15] font-bold text-sm tracking-wider uppercase rounded shadow hover:bg-gray-100 transition-colors"
             >
-              GET QUOTE NOW
+              {t.nav.getQuoteNow}
             </Link>
           </div>
 
@@ -138,17 +169,17 @@ export default function Menu({
                 rel="noopener noreferrer"
                 className="underline hover:text-white"
               >
-                1329 County Road 278, Bldg 475A, Melissa, TX 75454
+                {t.nav.addressShort}
               </a>
             </div>
             <div className="flex items-center space-x-2">
               <MapPin className="w-4 h-4 text-white flex-shrink-0" />
-              <span>Dallas | Fort Worth Service Areas</span>
+              <span>{t.nav.serviceAreasVal}</span>
             </div>
             <div className="flex items-center space-x-2">
               <Phone className="w-4 h-4 text-white" />
               <a href="tel:4693581011" className="underline hover:text-white">
-                (469) 358-1011
+                {t.nav.phone}
               </a>
             </div>
             <div className="flex items-center space-x-2">
@@ -157,12 +188,12 @@ export default function Menu({
                 href="mailto:info@andradecustomtrim.com"
                 className="underline hover:text-white"
               >
-                info@andradecustomtrim.com
+                {t.nav.email}
               </a>
             </div>
             <div className="flex items-center space-x-2">
               <Clock className="w-4 h-4 text-white" />
-              <span>Mon - Sat | 9AM - 7PM</span>
+              <span>{t.nav.workingHoursVal}</span>
             </div>
           </div>
         </div>

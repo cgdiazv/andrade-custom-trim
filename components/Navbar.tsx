@@ -1,26 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Globe, Clock, ChevronDown, Check } from "lucide-react";
+import { MapPin, Globe, Clock, Phone } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface NavbarProps {
   onToggleMobileMenu?: () => void;
   isMobileMenuOpen?: boolean;
 }
 
-export const languages = [
-  { code: "en", label: "English", flag: "🇺🇸", short: "EN" },
-  { code: "es", label: "Español", flag: "🇲🇽", short: "ES" },
-];
-
 export default function Navbar({
   onToggleMobileMenu,
   isMobileMenuOpen,
 }: NavbarProps) {
-  const [selectedLang, setSelectedLang] = useState(languages[0]);
-  const [isLangOpen, setIsLangOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   return (
     <div className="w-full bg-white border-b border-gray-100">
@@ -53,10 +48,10 @@ export default function Navbar({
               </div>
               <div className="flex flex-col text-left">
                 <span className="text-[13px] font-extrabold tracking-wider text-gray-900 uppercase">
-                  SERVICE AREAS
+                  {t.nav.serviceAreas}
                 </span>
                 <span className="text-[13px] font-medium text-gray-500">
-                  Dallas | Fort Worth
+                  {t.nav.serviceAreasVal}
                 </span>
               </div>
             </div>
@@ -89,77 +84,79 @@ export default function Navbar({
               </div>
               <div className="flex flex-col text-left">
                 <span className="text-[13px] font-extrabold tracking-wider text-gray-900 uppercase">
-                  WORKING HOURS
+                  {t.nav.workingHours}
                 </span>
                 <span className="text-[13px] font-medium text-gray-500">
-                  Mon - Sat | 9AM - 7PM
+                  {t.nav.workingHoursVal}
                 </span>
               </div>
             </div>
 
-            {/* Language Selector */}
-            <div className="relative">
+            {/* Language Selector (suauto-honduras style) */}
+            <div className="flex items-center gap-1.5 bg-gray-50 border border-gray-200 rounded-lg p-1 text-xs font-bold text-gray-500 shadow-2xs">
+              <Globe className="w-3.5 h-3.5 text-gray-400 ml-1" />
               <button
                 type="button"
-                onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center space-x-2 py-1.5 px-2.5 rounded-md hover:bg-gray-50 border border-transparent hover:border-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-[#FC6D15]/20"
-                aria-expanded={isLangOpen}
-                aria-label="Select language"
+                onClick={() => setLanguage("es")}
+                className={`px-2 py-1 rounded-md transition cursor-pointer ${
+                  language === "es"
+                    ? "bg-white text-[#FC6D15] shadow-xs font-black"
+                    : "hover:text-gray-800"
+                }`}
+                aria-label="Cambiar a Español"
               >
-                <span className="text-xl leading-none" role="img" aria-label={selectedLang.label}>
-                  {selectedLang.flag}
-                </span>
-                <ChevronDown
-                  className={`w-4 h-4 text-gray-600 transition-transform duration-200 ${
-                    isLangOpen ? "rotate-180" : ""
-                  }`}
-                />
+                ESP
               </button>
-
-              {isLangOpen && (
-                <>
-                  <div
-                    className="fixed inset-0 z-40"
-                    onClick={() => setIsLangOpen(false)}
-                  />
-                  <div className="absolute right-0 mt-2 w-36 bg-white rounded-lg shadow-xl border border-gray-100 py-1.5 z-50 animate-in fade-in zoom-in-95 duration-150">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        type="button"
-                        onClick={() => {
-                          setSelectedLang(lang);
-                          setIsLangOpen(false);
-                        }}
-                        className={`w-full flex items-center justify-between px-3 py-2 text-xs font-semibold hover:bg-orange-50 transition-colors ${
-                          selectedLang.code === lang.code
-                            ? "text-[#FC6D15] bg-orange-50/50"
-                            : "text-gray-700"
-                        }`}
-                      >
-                        <span className="flex items-center space-x-2">
-                          <span className="text-base">{lang.flag}</span>
-                          <span>{lang.label}</span>
-                        </span>
-                        {selectedLang.code === lang.code && (
-                          <Check className="w-3.5 h-3.5 text-[#FC6D15]" />
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                </>
-              )}
+              <button
+                type="button"
+                onClick={() => setLanguage("en")}
+                className={`px-2 py-1 rounded-md transition cursor-pointer ${
+                  language === "en"
+                    ? "bg-white text-[#FC6D15] shadow-xs font-black"
+                    : "hover:text-gray-800"
+                }`}
+                aria-label="Switch to English"
+              >
+                ENG
+              </button>
             </div>
           </div>
 
-          {/* Mobile Right Controls: Call Button & Hamburger */}
-          <div className="flex lg:hidden items-center space-x-3">
+          {/* Mobile Right Controls: Language Selector, Call Button & Hamburger */}
+          <div className="flex lg:hidden items-center space-x-2">
+            {/* Mobile Language Toggle */}
+            <div className="flex items-center bg-gray-50 border border-gray-200 rounded-lg p-0.5 text-xs font-bold text-gray-600">
+              <button
+                type="button"
+                onClick={() => setLanguage("es")}
+                className={`px-2 py-1 rounded-md transition cursor-pointer ${
+                  language === "es"
+                    ? "bg-white text-[#FC6D15] shadow-xs font-black"
+                    : "text-gray-500 hover:text-gray-900"
+                }`}
+              >
+                ES
+              </button>
+              <button
+                type="button"
+                onClick={() => setLanguage("en")}
+                className={`px-2 py-1 rounded-md transition cursor-pointer ${
+                  language === "en"
+                    ? "bg-white text-[#FC6D15] shadow-xs font-black"
+                    : "text-gray-500 hover:text-gray-900"
+                }`}
+              >
+                EN
+              </button>
+            </div>
+
+            {/* Direct Phone Call */}
             <a
               href="tel:4693581011"
               aria-label="Call (469) 358-1011"
               className="p-2 text-[#FC6D15] hover:bg-orange-50 rounded-full transition-colors"
             >
-              <Globe className="w-6 h-6" />
+              <Phone className="w-5 h-5 stroke-[2.2]" />
             </a>
 
             {/* Mobile Menu Trigger Button */}
