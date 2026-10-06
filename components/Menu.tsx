@@ -130,8 +130,19 @@ export default function Menu({
 
           {/* Mobile contact & hours breakdown */}
           <div className="pt-3 border-t border-white/15 space-y-2.5 text-xs text-white/90">
+            <div className="flex items-start space-x-2">
+              <MapPin className="w-4 h-4 text-white flex-shrink-0 mt-0.5" />
+              <a
+                href="https://maps.google.com/?q=1329+County+Road+278+Building+475A+Melissa+TX+75454"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-white"
+              >
+                1329 County Road 278, Bldg 475A, Melissa, TX 75454
+              </a>
+            </div>
             <div className="flex items-center space-x-2">
-              <MapPin className="w-4 h-4 text-white" />
+              <MapPin className="w-4 h-4 text-white flex-shrink-0" />
               <span>Dallas | Fort Worth Service Areas</span>
             </div>
             <div className="flex items-center space-x-2">

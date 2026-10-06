@@ -110,7 +110,21 @@ export default function Footer() {
                     info@andradecustomtrim.com
                   </a>
                 </li>
-                <li>Dallas| Fort Worth</li>
+                <li>
+                  <a
+                    href="https://maps.google.com/?q=1329+County+Road+278+Building+475A+Melissa+TX+75454"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[#FC6D15] transition-colors block text-white/85 leading-snug"
+                  >
+                    1329 County Road 278
+                    <br />
+                    Building 475A
+                    <br />
+                    Melissa, TX 75454
+                  </a>
+                </li>
+                <li>Dallas | Fort Worth Area</li>
                 <li>Mon - Sat | 9AM - 7PM</li>
               </ul>
             </div>

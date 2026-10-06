@@ -157,7 +157,7 @@ export default function ContactForm() {
             type="text"
             value={formData.city}
             onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-            placeholder="e.g. Allen, Plano, Frisco, Dallas"
+            placeholder="e.g. Melissa, Allen, Plano, Frisco, Dallas"
             className="w-full px-4 py-3 bg-[#fdfdfd] border border-gray-200 rounded-xs text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#FC6D15] focus:ring-1 focus:ring-[#FC6D15] transition-all"
           />
         </div>

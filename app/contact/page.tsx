@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 const serviceCities = [
+  "Melissa",
   "Dallas",
   "Fort Worth",
   "Allen",
@@ -75,19 +76,27 @@ export default function ContactPage() {
               <p className="text-xs text-gray-500 mt-1">Fast 24-hr reply</p>
             </a>
 
-            {/* Service Areas Card */}
-            <div className="bg-white p-6 sm:p-7 border border-gray-100 shadow-2xs rounded-xs flex flex-col items-start">
-              <div className="w-12 h-12 rounded-full bg-[#FC6D15]/10 text-[#FC6D15] flex items-center justify-center mb-4">
+            {/* Business Address Card */}
+            <a
+              href="https://maps.google.com/?q=1329+County+Road+278+Building+475A+Melissa+TX+75454"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-6 sm:p-7 border border-gray-100 shadow-2xs hover:shadow-md transition-all duration-300 rounded-xs flex flex-col items-start group"
+            >
+              <div className="w-12 h-12 rounded-full bg-[#FC6D15]/10 text-[#FC6D15] flex items-center justify-center mb-4 group-hover:bg-[#FC6D15] group-hover:text-white transition-colors">
                 <MapPin className="w-5 h-5 stroke-[2.2]" />
               </div>
               <span className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
-                SERVICE AREAS
+                OUR LOCATION
               </span>
-              <h3 className="text-lg font-extrabold text-gray-900">
-                Dallas | Fort Worth
+              <h3 className="text-base font-extrabold text-gray-900 group-hover:text-[#FC6D15] transition-colors leading-tight">
+                1329 County Road 278
+                <span className="block text-xs font-semibold text-gray-500 mt-0.5">
+                  Building 475A
+                </span>
               </h3>
-              <p className="text-xs text-gray-500 mt-1">DFW & surrounding communities</p>
-            </div>
+              <p className="text-xs text-gray-500 mt-1">Melissa, TX 75454</p>
+            </a>
 
             {/* Hours Card */}
             <div className="bg-white p-6 sm:p-7 border border-gray-100 shadow-2xs rounded-xs flex flex-col items-start">
@@ -204,6 +213,49 @@ export default function ContactPage() {
                   </a>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Map & Directions Section */}
+      <section className="w-full bg-white pb-16 sm:pb-20 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-[#f8f9fa] border border-gray-200/80 rounded-xs overflow-hidden shadow-2xs">
+            <div className="p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-200/80 bg-white">
+              <div>
+                <span className="text-xs font-bold text-[#FC6D15] uppercase tracking-wider block mb-1">
+                  OUR WORKSHOP & OFFICE
+                </span>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-gray-900 tracking-tight">
+                  1329 County Road 278, Building 475A, Melissa, TX 75454
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-500 mt-1">
+                  Conveniently located in Melissa, serving Dallas, Fort Worth & the entire DFW Metroplex.
+                </p>
+              </div>
+              <a
+                href="https://maps.google.com/?q=1329+County+Road+278+Building+475A+Melissa+TX+75454"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FC6D15] hover:bg-[#e55e0c] text-white text-xs sm:text-sm font-bold uppercase tracking-wider rounded-xs transition-colors shrink-0 shadow-xs"
+              >
+                <MapPin className="w-4 h-4" />
+                <span>Get Directions</span>
+              </a>
+            </div>
+            <div className="w-full h-80 sm:h-96 relative">
+              <iframe
+                title="Andrade Custom Trim Workshop & Office Location"
+                src="https://maps.google.com/maps?q=1329+County+Road+278+Building+475A+Melissa+TX+75454&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              />
             </div>
           </div>
         </div>
