@@ -13,7 +13,7 @@ export default function PageHeader({
   subtitle,
 }: PageHeaderProps) {
   return (
-    <section className="relative text-white py-24 sm:py-32 lg:py-36 min-h-[340px] sm:min-h-[420px] flex items-center justify-center overflow-hidden">
+    <section className="relative isolate text-white py-24 sm:py-32 lg:py-36 min-h-[340px] sm:min-h-[420px] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <Image
         src={image}

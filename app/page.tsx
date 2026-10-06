@@ -7,12 +7,12 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section with closets.webp Background */}
-      <section className="relative text-white py-28 sm:py-36 lg:py-44 px-6 lg:px-8 overflow-hidden min-h-[550px] sm:min-h-[620px] flex items-center justify-center">
+      {/* Hero Section with header01.webp Background */}
+      <section className="relative isolate text-white py-28 sm:py-36 lg:py-44 px-6 lg:px-8 overflow-hidden min-h-[550px] sm:min-h-[620px] flex items-center justify-center">
         {/* Background Image */}
         <Image
-          src="/closets.webp"
-          alt="Andrade Custom Closets and Trim Work"
+          src="/images/header01.webp"
+          alt="Andrade Custom Trim & Cabinetry"
           fill
           priority
           sizes="100vw"
@@ -23,9 +23,6 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/50 -z-10" />
 
         <div className="max-w-5xl mx-auto text-center space-y-8 drop-shadow-md">
-          <span className="inline-block py-1.5 px-4 rounded-full bg-black/40 backdrop-blur-sm text-[#FC6D15] text-xs font-bold uppercase tracking-widest border border-[#FC6D15]/60 shadow-md">
-            Dallas & Fort Worth Premier Trim & Cabinets
-          </span>
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
             Master Craftsmanship for Custom Trim & Cabinets
           </h1>

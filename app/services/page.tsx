@@ -1,7 +1,9 @@
 import React from "react";
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
-import ServicesSection from "@/components/ServicesSection";
+import TrimWorkSection from "@/components/TrimWorkSection";
+import FinishCarpentrySection from "@/components/FinishCarpentrySection";
+import CustomCabinetsSection from "@/components/CustomCabinetsSection";
 
 export const metadata: Metadata = {
   title: "Services | Andrade Custom Trim",
@@ -15,8 +17,14 @@ export default function ServicesPage() {
       {/* Header Banner using header01.webp */}
       <PageHeader title="Services" image="/images/header01.webp" />
 
-      {/* Services Grid & Overview */}
-      <ServicesSection />
+      {/* Trim Work Section */}
+      <TrimWorkSection />
+
+      {/* Finish Carpentry Section */}
+      <FinishCarpentrySection />
+
+      {/* Custom Cabinets Section */}
+      <CustomCabinetsSection />
     </div>
   );
 }
