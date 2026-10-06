@@ -65,7 +65,7 @@ export default function WhyChooseUs() {
           <div className="relative w-full overflow-hidden shadow-sm order-1 lg:order-2">
             <div className="relative w-full aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4]">
               <Image
-                src="/projects/enhanced_img25.webp"
+                src="/images/enhanced_img25.webp"
                 alt="Custom wooden slat staircase and finish carpentry by Andrade Custom Trim"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
