@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Send, CheckCircle2, Sparkles } from "lucide-react";
+import { Send, CheckCircle2, Sparkles, AlertCircle } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function ContactForm() {
@@ -19,16 +19,35 @@ export default function ContactForm() {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
 
-    // Simulate swift submission feedback
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || f.errorDesc);
+      }
+
       setIsSubmitted(true);
-    }, 600);
+    } catch (err: unknown) {
+      console.error("Error submitting contact form:", err);
+      setErrorMessage(err instanceof Error ? err.message : f.errorDesc);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
@@ -40,6 +59,7 @@ export default function ContactForm() {
       city: "",
       message: "",
     });
+    setErrorMessage(null);
     setIsSubmitted(false);
   };
 
@@ -196,6 +216,17 @@ export default function ContactForm() {
           className="w-full px-4 py-3 bg-[#fdfdfd] border border-gray-200 rounded-xs text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#FC6D15] focus:ring-1 focus:ring-[#FC6D15] transition-all resize-y"
         />
       </div>
+
+      {/* Error Message Alert */}
+      {errorMessage && (
+        <div className="p-4 bg-red-50 border border-red-200 rounded text-sm text-red-700 flex items-start gap-3 animate-in fade-in">
+          <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+          <div className="space-y-1">
+            <p className="font-bold text-red-800">{f.errorTitle}</p>
+            <p className="text-xs sm:text-sm text-red-600 leading-relaxed">{errorMessage}</p>
+          </div>
+        </div>
+      )}
 
       {/* Submit Button */}
       <button

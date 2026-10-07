@@ -266,6 +266,9 @@ export const translations = {
       successDesc:
         "Thank you for contacting Andrade Custom Trim. Victor or Michelle will review your project details and contact you within 24 business hours.",
       resetBtn: "Send Another Request",
+      errorTitle: "Submission Failed",
+      errorDesc:
+        "Something went wrong while sending your request. Please try again or call us directly at (469) 358-1011.",
       servicesList: [
         "Custom Trim Work",
         "Finish Carpentry",
@@ -563,6 +566,9 @@ export const translations = {
       successDesc:
         "Gracias por contactar a Andrade Custom Trim. Víctor o Michelle revisarán los detalles de su proyecto y le responderán en menos de 24 horas hábiles.",
       resetBtn: "Enviar Otra Solicitud",
+      errorTitle: "Error al Enviar",
+      errorDesc:
+        "Ocurrió un error al enviar su solicitud. Por favor intente nuevamente o llámenos directamente al (469) 358-1011.",
       servicesList: [
         "Molduras y Detalles (Trim Work)",
         "Carpintería de Acabado",
