@@ -23,7 +23,7 @@ export const translations = {
       heroTitle: "Master Craftsmanship for Custom Trim & Cabinets",
       heroSubtitle:
         "Delivering superior finish carpentry, custom cabinetry, crown molding, and architectural woodwork across DFW with unmatched precision.",
-      getFreeEstimate: "Get Free Estimate",
+      getFreeEstimate: "Get a Free Quote",
       viewOurWork: "View Our Work",
     },
     whoWeAre: {

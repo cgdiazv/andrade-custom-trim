@@ -12,11 +12,11 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section with header01.webp Background */}
+      {/* Hero Section with closets.webp Background */}
       <section className="relative isolate text-white py-28 sm:py-36 lg:py-44 px-6 lg:px-8 overflow-hidden min-h-[550px] sm:min-h-[620px] flex items-center justify-center">
         {/* Background Image */}
         <Image
-          src="/images/header01.webp"
+          src="/images/closets.webp"
           alt="Andrade Custom Trim & Cabinetry"
           fill
           priority
